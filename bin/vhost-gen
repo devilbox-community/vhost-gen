@@ -611,7 +611,7 @@ def vhost_get_vhost_ssl(config, template, server_name, verbose):
         {
             "__SSL_PATH_CRT__": to_str(vhost_get_ssl_crt_path(config, server_name, verbose)),
             "__SSL_PATH_KEY__": to_str(vhost_get_ssl_key_path(config, server_name, verbose)),
-            "__SSL_PROTOCOLS__": to_str(config["vhost"]["ssl"]["protocols"]),
+            "__SSL_PROTOCOLS__": to_str(vhost_get_ssl_protocols(config)),
             "__SSL_HONOR_CIPHER_ORDER__": to_str(config["vhost"]["ssl"]["honor_cipher_order"]),
             "__SSL_CIPHERS__": to_str(config["vhost"]["ssl"]["ciphers"]),
         },
@@ -660,6 +660,17 @@ def vhost_get_ssl_key_path(config, server_name, verbose):
     output = os.path.join(path, name)
     log(3, "[ssl-key]  Returning: {}".format(output), verbose)
     return output
+
+
+def vhost_get_ssl_protocols(config):
+    # type: (Dict[str, Any]) -> str
+    """Get SSL protocols string, removing TLSv1.3 for Apache 2.2."""
+    protocols = to_str(config["vhost"]["ssl"]["protocols"])
+
+    # Apache 2.2 doesn't support TLSv1.3
+    if config["server"] == "apache22" and "TLSv1.3" in protocols:
+        return protocols.replace("TLSv1.3", "").strip()
+    return protocols
 
 
 def vhost_get_docroot_path(config, docroot, proxy, verbose):
