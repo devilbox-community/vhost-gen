@@ -97,7 +97,7 @@ vhost:
     http2: False
     dir_crt: /etc/httpd/cert
     dir_key: /etc/httpd/cert
-    protocols: 'TLSv1 TLSv1.1 TLSv1.2 TLSv1.3'
+    protocols: 'TLSv1 TLSv1.1 TLSv1.2'
     honor_cipher_order: 'on'
     ciphers: 'HIGH:!aNULL:!MD5'
 
