@@ -3,7 +3,8 @@
 #
 # The MIT License (MIT)
 #
-# Copyright (c) 2017 cytopia <cytopia@everythingcli.org>
+# Copyright (c) 2017-2024 cytopia <cytopia@everythingcli.org>
+# Copyright (c) 2024-present nntoan <devilbox@nntoan.com>
 
 """
 vHost creator for Apache 2.2, Apache 2.4 and Nginx.
@@ -28,7 +29,7 @@ if os.environ.get("MYPY_CHECK", False):
 # Globals
 # --------------------------------------------------------------------------------------------------
 APPNAME = "vhost-gen"
-APPREPO = "https://github.com/devilbox/vhost-gen"
+APPREPO = "https://github.com/devilbox-community/vhost-gen"
 VERSION = "1.0.10"
 RELDATE = "2022-12-31"
 
@@ -57,7 +58,7 @@ DEFAULT_CONFIG = {
             "dir_key": "",
             "honor_cipher_order": "on",
             "ciphers": "HIGH:!aNULL:!MD5",
-            "protocols": "TLSv1 TLSv1.1 TLSv1.2",
+            "protocols": "TLSv1 TLSv1.1 TLSv1.2 TLSv1.3",
         },
         "log": {
             "access": {"prefix": "", "stdout": False},
@@ -163,9 +164,9 @@ Misc arguments:
 def print_version():
     # type: () -> None
     """Show program version."""
-    print("%s: Version v%s (%s) by cytopia" % (APPNAME, VERSION, RELDATE))
-    print("<https://github.com/devilbox/vhost-gen>")
-    print("<https://github.com/cytopia>")
+    print("%s: Version v%s (%s) by nntoan" % (APPNAME, VERSION, RELDATE))
+    print("<https://github.com/devilbox-community/vhost-gen>")
+    print("<https://github.com/nntoan>")
     print("The MIT License (MIT)")
 
 

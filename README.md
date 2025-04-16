@@ -10,15 +10,15 @@
 
 **Continuous Integration**
 
-[![testing](https://github.com/devilbox/vhost-gen/workflows/testing/badge.svg)](https://github.com/devilbox/vhost-gen/actions?query=workflow%3Atesting)
-[![fuzzing](https://github.com/devilbox/vhost-gen/workflows/fuzzing/badge.svg)](https://github.com/devilbox/vhost-gen/actions?query=workflow%3Afuzzing)
+[![testing](https://github.com/devilbox-community/vhost-gen/workflows/testing/badge.svg)](https://github.com/devilbox-community/vhost-gen/actions?query=workflow%3Atesting)
+[![fuzzing](https://github.com/devilbox-community/vhost-gen/workflows/fuzzing/badge.svg)](https://github.com/devilbox-community/vhost-gen/actions?query=workflow%3Afuzzing)
 
-[![linting](https://github.com/devilbox/vhost-gen/workflows/linting/badge.svg)](https://github.com/devilbox/vhost-gen/actions?query=workflow%3Alinting)
-[![pylint](https://github.com/devilbox/vhost-gen/workflows/pylint/badge.svg)](https://github.com/devilbox/vhost-gen/actions?query=workflow%3Apylint)
-[![black](https://github.com/devilbox/vhost-gen/workflows/black/badge.svg)](https://github.com/devilbox/vhost-gen/actions?query=workflow%3Ablack)
-[![mypy](https://github.com/devilbox/vhost-gen/workflows/mypy/badge.svg)](https://github.com/devilbox/vhost-gen/actions?query=workflow%3Amypy)
-[![pycode](https://github.com/devilbox/vhost-gen/workflows/pycode/badge.svg)](https://github.com/devilbox/vhost-gen/actions?query=workflow%3Apycode)
-[![pydoc](https://github.com/devilbox/vhost-gen/workflows/pydoc/badge.svg)](https://github.com/devilbox/vhost-gen/actions?query=workflow%3Apydoc)
+[![linting](https://github.com/devilbox-community/vhost-gen/workflows/linting/badge.svg)](https://github.com/devilbox-community/vhost-gen/actions?query=workflow%3Alinting)
+[![pylint](https://github.com/devilbox-community/vhost-gen/workflows/pylint/badge.svg)](https://github.com/devilbox-community/vhost-gen/actions?query=workflow%3Apylint)
+[![black](https://github.com/devilbox-community/vhost-gen/workflows/black/badge.svg)](https://github.com/devilbox-community/vhost-gen/actions?query=workflow%3Ablack)
+[![mypy](https://github.com/devilbox-community/vhost-gen/workflows/mypy/badge.svg)](https://github.com/devilbox-community/vhost-gen/actions?query=workflow%3Amypy)
+[![pycode](https://github.com/devilbox-community/vhost-gen/workflows/pycode/badge.svg)](https://github.com/devilbox-community/vhost-gen/actions?query=workflow%3Apycode)
+[![pydoc](https://github.com/devilbox-community/vhost-gen/workflows/pydoc/badge.svg)](https://github.com/devilbox-community/vhost-gen/actions?query=workflow%3Apydoc)
 
 
 **[vhost-gen](bin/vhost-gen)** will dynamically generate **vhost** or **reverse proxy** (with or without **websocket support**) configuration files for Apache 2.2, Apache 2.4 and Nginx depending on what you have set in [conf.yml](etc/conf.yml). This makes it easy to switch between different web servers while keeping the exact same functionality.
@@ -35,7 +35,7 @@ pip install vhost-gen
 #### From git
 **Note:** When using the Makefile, ensure that `pyyaml` is installed (`pip install pyyaml`).
 ```bash
-git clone https://github.com/devilbox/vhost-gen
+git clone https://github.com/devilbox-community/vhost-gen
 cd vhost-gen
 sudo make install
 ```
@@ -54,9 +54,9 @@ $ vhost-gen -r http://127.0.0.1:8080 -l / -n api.example.com
 
 **`vhost-gen`** alone simply creates a new virtual host every time you execute it. The goal however is to also automate the execution of the vhost generator itself.
 
-#### 1. Reverse Proxy automation: [watcherp](https://github.com/devilbox/watcherp)
+#### 1. Reverse Proxy automation: [watcherp](https://github.com/devilbox-community/watcherd)
 
-Here enters **[watcherp](https://github.com/devilbox/watcherp)** the game. **[watcherp](https://github.com/devilbox/watcherp)** listens for changes of port bindings and triggers a command whenever a new port has been bound or a binding has been removed. By combining these two tools, you could automate the creating of reverse proxies with one command:
+Here enters **[watcherp](https://github.com/devilbox-community/watcherd)** the game. **[watcherp](https://github.com/devilbox-community/watcherd)** listens for changes of port bindings and triggers a command whenever a new port has been bound or a binding has been removed. By combining these two tools, you could automate the creating of reverse proxies with one command:
 
 ```bash
 # %n will be replaced by watcherp with the address a port has binded
@@ -69,9 +69,9 @@ $ watcherp -v \
   -t "nginx -s reload"
 ```
 
-#### 2. Virtual Host automation: [watcherd](https://github.com/devilbox/watcherd)
+#### 2. Virtual Host automation: [watcherd](https://github.com/devilbox-community/watcherd)
 
-Here enters **[watcherd](https://github.com/devilbox/watcherd)** the game. **[watcherd](https://github.com/devilbox/watcherd)** listens for directory changes and triggers a command whenever a directory has been created or deleted. By combining these two tools, you could automate mass virtual hosting with one command:
+Here enters **[watcherd](https://github.com/devilbox-community/watcherd)** the game. **[watcherd](https://github.com/devilbox-community/watcherd)** listens for directory changes and triggers a command whenever a directory has been created or deleted. By combining these two tools, you could automate mass virtual hosting with one command:
 
 ```bash
 # %n will be replaced by watcherd with the new directory name
@@ -98,7 +98,7 @@ $ watcherd -v \
 
 ##### Making it robust
 
-If you don't trust the stability of **[watcherd](https://github.com/devilbox/watcherd)** or want other means of controlling this daemon, you can utilize **[supervisord](http://supervisord.org/)**:
+If you don't trust the stability of **[watcherd](https://github.com/devilbox-community/watcherd)** or want other means of controlling this daemon, you can utilize **[supervisord](http://supervisord.org/)**:
 ```ini
 [program:watcherd]
 command=watcherd -v -p /shared/httpd -a "vhost-gen -p %%p -n %%n -s" -d "rm /etc/nginx/custom.d/%%n.conf" -t "nginx -s reload"
@@ -306,4 +306,6 @@ This is an open source project and done in spare time. If you want to help out y
 
 **[MIT License](LICENSE.md)**
 
-Copyright (c) 2017 [cytopia](https://github.com/cytopia)
+Copyright (c) 2017-2023 [cytopia](https://github.com/cytopia)
+
+Copyright (c) 2024-present [nntoan](https://github.com/nntoan)

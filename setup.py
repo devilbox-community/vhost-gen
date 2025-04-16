@@ -11,17 +11,17 @@ setup(
     license="MIT",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    author="cytopia",
-    author_email="cytopia@everythingcli.org",
-    url="https://github.com/devilbox/vhost-gen",
+    author="nntoan",
+    author_email="devilbox@nntoan.com",
+    url="https://github.com/devilbox-community/vhost-gen",
     install_requires=["pyyaml", "future"],
     scripts=[
         "bin/vhost-gen"
     ],
        project_urls={
-        'Source Code': 'https://github.com/devilbox/vhost-gen',
+        'Source Code': 'https://github.com/devilbox-community/vhost-gen',
         'Documentation': 'https://devilbox.readthedocs.io/en/latest/',
-        'Bug Tracker': 'https://github.com/devilbox/vhost-gen/issues',
+        'Bug Tracker': 'https://github.com/devilbox-community/vhost-gen/issues',
     },
  classifiers=[
         # https://pypi.org/classifiers/

@@ -2,7 +2,7 @@
 # Generic vhost generator configuration file.
 # Location: /etc/vhost-gen/conf.yml
 #
-# See: https://github.com/devilbox/vhost-gen
+# See: https://github.com/devilbox-community/vhost-gen
 #
 # If not specified or file is missing the following
 # default values will be merged to your current (if any)
@@ -97,7 +97,7 @@ vhost:
     http2: True
     dir_crt: /etc/httpd/cert
     dir_key: /etc/httpd/cert
-    protocols: 'TLSv1 TLSv1.1 TLSv1.2'
+    protocols: 'TLSv1 TLSv1.1 TLSv1.2 TLSv1.3'
     honor_cipher_order: 'on'
     ciphers: 'HIGH:!aNULL:!MD5'
 

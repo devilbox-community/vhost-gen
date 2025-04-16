@@ -2,4 +2,8 @@ vhost_gen.egg-info/
 build/
 dist/
 .*pyc
+.idea
+.DS_Store
+.vscode
+*.swp
 __pycache__/
